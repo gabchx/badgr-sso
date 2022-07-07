@@ -1,0 +1,46 @@
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAZU4UTZOZTNAH7AZWK:gchaix",
+        "arn": "arn:aws:sts::663347252147:assumed-role/AWSReservedSSO_int-super-admins_ea75bbbf66396141/gchaix",
+        "accountId": "663347252147",
+        "accessKeyId": "ASIAZU4UTZOZYIF2ZBWS",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AROAZU4UTZOZTNAH7AZWK",
+                "arn": "arn:aws:iam::663347252147:role/aws-reserved/sso.amazonaws.com/eu-west-1/AWSReservedSSO_int-super-admins_ea75bbbf66396141",
+                "accountId": "663347252147",
+                "userName": "AWSReservedSSO_int-super-admins_ea75bbbf66396141"
+            },
+            "webIdFederationData": {},
+            "attributes": {
+                "creationDate": "2022-07-06T16:56:18Z",
+                "mfaAuthenticated": "false"
+            }
+        }
+    },
+    "eventTime": "2022-07-06T17:00:55Z",
+    "eventSource": "sso-directory.amazonaws.com",
+    "eventName": "AddMemberToGroup",
+    "awsRegion": "eu-west-1",
+    "sourceIPAddress": "AWS Internal",
+    "userAgent": "AWS Internal",
+    "requestParameters": {
+        "identityStoreId": "d-93670b1d31",
+        "groupId": "93670b1d31-12933070-79fb-4da8-8966-e3998662741e",
+        "member": {
+            "memberId": "93670b1d31-dcf6e9ac-0c04-4405-b751-a976fa599afa"
+        }
+    },
+    "responseElements": null,
+    "requestID": "f083ee80-33d8-462b-a527-70082428e768",
+    "eventID": "b0e7b857-e00e-4207-94e7-2b0800b08e0d",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "recipientAccountId": "663347252147",
+    "eventCategory": "Management",
+    "sessionCredentialFromConsole": "true"
+}

@@ -1,0 +1,16 @@
+{
+  "detail-type": [
+    "AWS API Call via CloudTrail"
+  ],
+  "source": [
+    "aws.sso"
+  ],
+  "detail": {
+    "eventSource": [
+      "sso-directory.amazonaws.com"
+    ],
+    "eventName": [
+      "AddMemberToGroup"
+    ]
+  }
+}
