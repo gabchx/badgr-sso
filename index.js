@@ -3,11 +3,7 @@ const { IdentitystoreClient, DescribeUserCommand } = require("@aws-sdk/client-id
 const client = new IdentitystoreClient({ region: "eu-west-1" });
 
 exports.handler = async (event) => {
-  return "ok";
-};
-
-(async () => {
-    //let token = await getConnexionToken()
+  //let token = await getConnexionToken()
     input = {
         "IdentityStoreId": "d-93670b1d31",
         "UserId": "93670b1d31-dcf6e9ac-0c04-4405-b751-a976fa599afa"
@@ -23,5 +19,6 @@ exports.handler = async (event) => {
     );*/
     //console.log(userlist);
     //console.log(token)
-  })();
+  return "ok";
+};
 
