@@ -19,6 +19,6 @@ exports.handler = async (event) => {
     );*/
     //console.log(userlist);
     //console.log(token)
-  return "ok";
+  return response;
 };
 
