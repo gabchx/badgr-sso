@@ -1,27 +1,62 @@
-const badgr = require("./badgr.js");
-const { IdentitystoreClient, DescribeUserCommand } = require("@aws-sdk/client-identitystore");
+const badgr = require("./badgr-api/badgr.js");
+const event = require("./AddMemberToGroup.json");
+const {
+  IdentitystoreClient,
+  DescribeUserCommand,
+} = require("@aws-sdk/client-identitystore");
 const client = new IdentitystoreClient({ region: "eu-west-1" });
 
-exports.handler = async (event) => {
+/*exports.handler = async (event) => {
+   
   return "ok";
-};
+};*/
 
 (async () => {
-    //let token = await getConnexionToken()
-    input = {
-        "IdentityStoreId": "d-93670b1d31",
-        "UserId": "93670b1d31-dcf6e9ac-0c04-4405-b751-a976fa599afa"
-     }
-    const command = new DescribeUserCommand(input);
-    const response = await client.send(command);
-    console.log(response)
+  //Recuperer dans l'event (identityStoreId, memberId, groupId)
 
+  const identityStoreId = event.requestParameters.identityStoreId;
+  const groupId = event.requestParameters.groupId;
+  const memberId = event.requestParameters.member.memberId;
 
-    /*let userlist = await getUserAwardedList(
-      "Bearer NkrpkHvxFduzS54jKSLEFXXe1CtBIy",
-      "rFeAiLf4THyx1Zl0ugBA8A"
-    );*/
-    //console.log(userlist);
-    //console.log(token)
-  })();
+  //Recuperer le nom de l'utilisateur a partir de l'userId et de IdentityStore Id
 
+  input = {
+    IdentityStoreId: identityStoreId,
+    UserId: memberId,
+  };
+  const command = new DescribeUserCommand(input);
+  const response = await client.send(command);
+  const userName = response.UserName
+
+  //Recuperer l'id du badges a attribuer par correspondance avec le groupId
+
+  const badgeId = "rFeAiLf4THyx1Zl0ugBA8A"
+
+  //Recuperer la liste des nom d'utilisateur qui on recu le badge
+
+  const badgrToken = await getConnexionToken()
+  let userNameList = await getUserAwardedList(
+    badgrToken,
+    badgeId
+  );
+
+  //Si l'utilisateur concerner n'est pas dans la liste
+  let needBadge = true
+  userNameList.forEach(element => {
+    if(userName == element){
+      needBadge = false
+    }
+  });
+
+  //Lui attribuer le badge
+  if(needBadge) {
+    console.log(userName+" vas recevoir un badge")
+    toReturn = await awardBadge(badgrToken,badgeId,userName)
+  }
+  else {
+    console.log(userName+" ne vas pas recevoir un badge")
+    toReturn = "Pas de badge"
+  }
+  console.log(toReturn)
+  return toReturn
+})();

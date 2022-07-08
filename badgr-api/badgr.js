@@ -35,17 +35,17 @@ getConnexionToken = async () => {
 };
 
 //Ajouter la recuperation du token de refreshing
-awardBadge = async (authToken, badgeId) => {
+awardBadge = async (authToken, badgeId, username) => {
   try {
     const json = JSON.stringify({
       issuerOpenBadgeId: issuerOpenBadgeId,
       recipient: {
-        identity: "bellebopobrau-3838@yopmail.com",
+        identity: username+"@afdtech.com",
         type: "email",
         hashed: true,
       },
       narrative:
-        "This is an overall narrative describing how the badge was earned.",
+        "Bravo !",
       evidence: [
         {
           url: "https://api.eu.badgr.io/public/badges/" + badgeId,
